@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lianfang.mapper.UserMapper">
+    <select id="getAll" resultType="com.example.lianfang.entity.User">
+        select * from user
+    </select>
+    <select id="getById" resultType="com.example.lianfang.entity.User">
+        select * from user where id = #{id}
+    </select>
+    <select id="login" resultType="User">
+        select * from user where id =#{id} and pass =#{pass}
+    </select>
+
+
+
+   <insert id="insertRecord" >
+        insert into user(id,pass,identity)
+values
+	(#{id},#{pass},#{identity})
+    </insert>
+    <update id="updateRecord" parameterType="Integer" >
+        update user
+        <set >
+            <if test=" pass != null" >
+                pass = #{pass},
+            </if>
+            <if test=" identity != null" >
+                identity = #{identity},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+
+    </update>
+
+    <delete id="deleteRecord" parameterType="String" >
+            delete from user where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+</mapper>

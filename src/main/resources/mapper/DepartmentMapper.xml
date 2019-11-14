@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lianfang.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.Department" >
+    <id column="dp_id" property="dpId" jdbcType="VARCHAR" />
+    <result column="dp_name" property="dpName" jdbcType="VARCHAR" />
+    <result column="dp_head" property="dpHead" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dp_id, dp_name, dp_head
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from department
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lianfang.entity.Department" >
+    insert into department (dp_id, dp_name, dp_head
+      )
+    values (#{dpId,jdbcType=VARCHAR}, #{dpName,jdbcType=VARCHAR}, #{dpHead,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lianfang.entity.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="dpName != null" >
+        dp_name,
+      </if>
+      <if test="dpHead != null" >
+        dp_head,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="dpName != null" >
+        #{dpName,jdbcType=VARCHAR},
+      </if>
+      <if test="dpHead != null" >
+        #{dpHead,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.Department" >
+    update department
+    <set >
+      <if test="dpName != null" >
+        dp_name = #{dpName,jdbcType=VARCHAR},
+      </if>
+      <if test="dpHead != null" >
+        dp_head = #{dpHead,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.Department" >
+    update department
+    set dp_name = #{dpName,jdbcType=VARCHAR},
+      dp_head = #{dpHead,jdbcType=VARCHAR}
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/learning_condition_sys?useAffectedRows=true&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: bushiba2
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+mybatis:
+  typeAliasesPackage: com.example.lianfang.entity
+  mapperLocations: classpath:mapper/*.xml
+  #configLocation: classpath:/config.xml
+
+  configuration:
+    map-underscore-to-camel-case: true
+application:
+  version: 1.0.0
+  profile: C:\Users\ASUS\Desktop\文件上传         # 文件上传路径
+

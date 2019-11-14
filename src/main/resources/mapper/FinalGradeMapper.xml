@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lianfang.mapper.FinalGradeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lianfang.entity.FinalGrade" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="cour_no" property="courNo" jdbcType="VARCHAR" />
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="semester" property="semester" jdbcType="VARCHAR" />
+    <result column="check_class_attendance" property="checkClassAttendance" jdbcType="REAL" />
+    <result column="check_homeawork_attendance" property="checkHomeaworkAttendance" jdbcType="REAL" />
+    <result column="mid_exam" property="midExam" jdbcType="REAL" />
+    <result column="last_exam" property="lastExam" jdbcType="REAL" />
+    <result column="grades" property="grades" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cour_no, teacher_id, semester, check_class_attendance, check_homeawork_attendance, 
+    mid_exam, last_exam, grades
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.example.lianfang.entity.FinalGradeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from final_grade
+    where id = #{id,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+      and teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.example.lianfang.entity.FinalGradeKey" >
+    delete from final_grade
+    where id = #{id,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+      and teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lianfang.entity.FinalGrade" >
+    insert into final_grade (id, cour_no, teacher_id, 
+      semester, check_class_attendance, check_homeawork_attendance, 
+      mid_exam, last_exam, grades)
+    values (#{id,jdbcType=VARCHAR}, #{courNo,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{semester,jdbcType=VARCHAR}, #{checkClassAttendance,jdbcType=REAL}, #{checkHomeaworkAttendance,jdbcType=REAL}, 
+      #{midExam,jdbcType=REAL}, #{lastExam,jdbcType=REAL}, #{grades,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lianfang.entity.FinalGrade" >
+    insert into final_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courNo != null" >
+        cour_no,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="semester != null" >
+        semester,
+      </if>
+      <if test="checkClassAttendance != null" >
+        check_class_attendance,
+      </if>
+      <if test="checkHomeaworkAttendance != null" >
+        check_homeawork_attendance,
+      </if>
+      <if test="midExam != null" >
+        mid_exam,
+      </if>
+      <if test="lastExam != null" >
+        last_exam,
+      </if>
+      <if test="grades != null" >
+        grades,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="courNo != null" >
+        #{courNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="semester != null" >
+        #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="checkClassAttendance != null" >
+        #{checkClassAttendance,jdbcType=REAL},
+      </if>
+      <if test="checkHomeaworkAttendance != null" >
+        #{checkHomeaworkAttendance,jdbcType=REAL},
+      </if>
+      <if test="midExam != null" >
+        #{midExam,jdbcType=REAL},
+      </if>
+      <if test="lastExam != null" >
+        #{lastExam,jdbcType=REAL},
+      </if>
+      <if test="grades != null" >
+        #{grades,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lianfang.entity.FinalGrade" >
+    update final_grade
+    <set >
+      <if test="semester != null" >
+        semester = #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="checkClassAttendance != null" >
+        check_class_attendance = #{checkClassAttendance,jdbcType=REAL},
+      </if>
+      <if test="checkHomeaworkAttendance != null" >
+        check_homeawork_attendance = #{checkHomeaworkAttendance,jdbcType=REAL},
+      </if>
+      <if test="midExam != null" >
+        mid_exam = #{midExam,jdbcType=REAL},
+      </if>
+      <if test="lastExam != null" >
+        last_exam = #{lastExam,jdbcType=REAL},
+      </if>
+      <if test="grades != null" >
+        grades = #{grades,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+      and teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lianfang.entity.FinalGrade" >
+    update final_grade
+    set semester = #{semester,jdbcType=VARCHAR},
+      check_class_attendance = #{checkClassAttendance,jdbcType=REAL},
+      check_homeawork_attendance = #{checkHomeaworkAttendance,jdbcType=REAL},
+      mid_exam = #{midExam,jdbcType=REAL},
+      last_exam = #{lastExam,jdbcType=REAL},
+      grades = #{grades,jdbcType=REAL}
+    where id = #{id,jdbcType=VARCHAR}
+      and cour_no = #{courNo,jdbcType=VARCHAR}
+      and teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+</mapper>
